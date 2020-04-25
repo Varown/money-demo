@@ -1,10 +1,16 @@
 <template>
-  <div>你好</div>
+  <div>
+    你好
+    <Nav/>
+  </div>
+
 </template>
 
 <script>
+
   export default {
-    name: "Money"
+    name: "Money",
+
   };
 </script>
 
