@@ -1,7 +1,7 @@
 <template>
-  <div>statistics
-  <Nav/>
-  </div>
+<layout>
+  <p>sttttttt</p>
+</layout>
 </template>
 
 <script>

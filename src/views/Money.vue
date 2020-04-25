@@ -1,8 +1,7 @@
 <template>
-  <div>
-    你好
-    <Nav/>
-  </div>
+<layout>
+<p>Money</p>
+</layout>
 
 </template>
 
@@ -14,6 +13,6 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

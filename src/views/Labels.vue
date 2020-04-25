@@ -1,7 +1,7 @@
 <template>
-  <div>Labels
-  <Nav/>
-  </div>
+<layout>
+  <p>labels</p>
+</layout>
 </template>
 
 <script>
