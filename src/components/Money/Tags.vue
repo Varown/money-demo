@@ -64,6 +64,7 @@
         color: #999;
         border-bottom: 1px solid;
         padding: 0 4px;
+
       }
     }
   }
