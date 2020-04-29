@@ -16,13 +16,16 @@
 
   @Component
   export default class FormItem extends Vue {
+
     value = '';
+
     @Prop({required: true}) fieldName?: string;
-   @Prop({required: true}) placeholder?: string;
-  @Watch('value')
-  onValueChange(value: string){
-    this.$emit('update:value',value)
-  }
+    @Prop({required: true}) placeholder?: string;
+
+    @Watch('value')
+    onValueChange(value: string) {
+      this.$emit('update:value', value);
+    }
 
   }
 </script>
@@ -34,9 +37,11 @@
     padding-left: 16px;
     display: flex;
     align-items: center;
+
     .name {
       padding-right: 16px;
     }
+
     input {
       height: 64px;
       flex-grow: 1;
