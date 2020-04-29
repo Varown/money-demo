@@ -1,8 +1,8 @@
 <template>
 <layout>
 <ol class="tags">
-  <li v-for="tag in tags" :key="tag">
-    <span>{{tag}}</span>
+  <li v-for="tag in tags" :key="tag.id">
+    <span>{{tag.name}}</span>
     <Icon name="right"/>
   </li>
 
@@ -22,6 +22,7 @@
   @Component
   export default class Labels extends Vue {
     tags=tagListModel.fetch()
+
     createTag() {
       const names = (window.prompt('请输入标签名')) as string
       const name = names.replace(/\s*/g, "");
