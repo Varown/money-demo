@@ -45,6 +45,8 @@
           window.alert('添加成功');
 
         }
+      }else{
+        window.alert('标签名不能为空')
       }
     }
 

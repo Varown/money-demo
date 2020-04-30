@@ -25,18 +25,15 @@
     components: {Button}
   })
   export default class Labels extends Vue {
-    tags=tagListModel.fetch()
+    tags=window.tagList
 
     createTag() {
       const names = (window.prompt('请输入标签名')) as string
       const name = names.replace(/\s*/g, "");
       if (name) {
-        const message = tagListModel.create(name)
-        if (message === 'duplicated') {
-          window.alert('标签名重复了');
-        } else if (message === 'success') {
-          window.alert('添加成功');
-        }
+        window.createTag(name)
+      }else{
+        window.alert('标签名不能为空')
       }
     }
   }
