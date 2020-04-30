@@ -39,7 +39,7 @@
     update(names: string){
       const name = names.replace(/\s*/g, "");
       if(this.tag){
-          store.updateTag(this.tag.id,name)
+        store.updateTag(this.tag.id,name)
       }
     }
     remove(){
@@ -53,10 +53,12 @@
 
     }
     goBack(){
-      if(this.tag && this.tag.name!==''){
+      if(this.tag ){
+        if (this.tag.name===''){
+          window.alert('标签名为空将自动删除')
+          store.removeTag(this.tag.id)
+        }
         this.$router.back()
-      }else {
-        window.alert('标签名不能为空')
       }
     }
   }
