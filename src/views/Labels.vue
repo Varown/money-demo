@@ -19,7 +19,6 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import tagListModel from '@/models/tagListModel';
   import Button from '@/components/Button.vue';
   @Component({
     components: {Button}
@@ -30,7 +29,7 @@
     createTag() {
       const names = (window.prompt('请输入标签名')) as string
       const name = names.replace(/\s*/g, "");
-      if (name) {
+      if (names) {
         window.createTag(name)
       }else{
         window.alert('标签名不能为空')
