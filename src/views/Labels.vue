@@ -30,7 +30,7 @@
     createTag() {
       const names = (window.prompt('请输入标签名')) as string
       const name = names.replace(/\s*/g, "");
-      if (names) {
+      if (name) {
         store.createTag(name)
       }else{
         window.alert('标签名不能为空')
