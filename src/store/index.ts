@@ -25,7 +25,7 @@ const store = new Vuex.Store({
 
     ////////////////////
     fetchTags(state) {
-     return  state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
+      state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
     },
     createTag(state, name: string) {
       console.log(name);
