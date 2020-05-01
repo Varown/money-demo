@@ -3,7 +3,7 @@
     <div class="navBar">
       <Icon class="leftIcon" name="left" @click="goBack"/>
       <span class="title">编辑标签</span>
-      <span class="rightIcon"></span>
+      <span class="rightIcon"/>
     </div>
     <div class="form-wrapper">
       <FormItem :value="tag.name"
@@ -19,51 +19,44 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-
   import FormItem from '@/components/Money/FormItem.vue';
   import Button from '@/components/Button.vue';
-  import store from '@/store/index2';
   @Component({
-    components: {Button, FormItem}
+    components: {Button, FormItem},
   })
   export default class EditLabel extends Vue {
-    tag?: {id: string ; name: string} = undefined
-
+    get tag() {
+      return this.$store.state.currentTag;
+    }
     created() {
-      this.tag=store.findTag(this.$route.params.id)
-      if(!this.tag) {
-    this.$router.replace('/404')
+      const id = this.$route.params.id;
+      console.log(id);
+      this.$store.commit('fetchTags');
+      this.$store.commit('setCurrentTag', id);
+      if (!this.tag) {
+        console.log('no tag');
+        this.$router.replace('/404');
+      } else {
+        console.log('has tag');
       }
     }
-
-    update(names: string){
-      const name = names.replace(/\s*/g, "");
-      if(this.tag){
-        store.updateTag(this.tag.id,name)
+    update(name: string) {
+      if (this.tag) {
+        this.$store.commit('updateTag', {
+          id: this.tag.id, name
+        });
       }
     }
-    remove(){
-      if(this.tag){
-        if(store.removeTag(this.tag.id)){
-          this.$router.back()
-        }else {
-          window.alert('删除失败')
-        }
+    remove() {
+      if (this.tag) {
+        this.$store.commit('removeTag', this.tag.id);
       }
-
     }
-    goBack(){
-      if(this.tag ){
-        if (this.tag.name===''){
-          window.alert('标签名为空将自动删除')
-          store.removeTag(this.tag.id)
-        }
-        this.$router.back()
-      }
+    goBack() {
+      this.$router.back();
     }
   }
 </script>
-
 
 <style lang="scss" scoped>
   .navBar {
@@ -85,11 +78,11 @@
       height: 24px;
     }
   }
-  .form-wrapper{
+  .form-wrapper {
     background: white;
     margin-top: 8px;
   }
-  .button-wrapper{
+  .button-wrapper {
     text-align: center;
     padding: 16px;
     margin-top: 44-16px;
