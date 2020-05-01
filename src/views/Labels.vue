@@ -20,22 +20,22 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import Button from '@/components/Button.vue';
-  import store from '@/store/index2';
-  @Component({
-    components: {Button}
-  })
-  export default class Labels extends Vue {
-    tags=store.tagList
+  import {mixins} from 'vue-class-component';
+  import TagHelper from '@/mixins/TagHelper';
 
-    createTag() {
-      const names = (window.prompt('请输入标签名')) as string
-      const name = names.replace(/\s*/g, "");
-      if (name) {
-        store.createTag(name)
-      }else{
-        window.alert('标签名不能为空')
+  @Component({
+    components: {Button},
+      computed: {
+        tags() {
+          return this.$store.state.tagList;
+        }
       }
+  })
+  export default class Labels extends mixins(TagHelper) {
+    beforeCreate() {
+      this.$store.commit('fetchTags');
     }
+
   }
 </script>
 
