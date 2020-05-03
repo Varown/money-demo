@@ -71,7 +71,6 @@
         } else {
           result.push({title: dayjs(current.createdAt).format('YYYY-MM-DD'), items: [current]});
         }
-
       }
       result.map(group => {
         group.total = group.items.reduce((sum, item) => {
