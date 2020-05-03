@@ -29,7 +29,6 @@
     output = '0';
     inputContent(event: MouseEvent) {
       const button = (event.target as HTMLButtonElement);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const input = button.textContent!;
       if (this.output.length === 16) {return;}
       if (this.output === '0') {

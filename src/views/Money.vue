@@ -3,12 +3,12 @@
 
     <NumberPad @update:value="onUpdateAmount" @submit="saveRecord"/>
 
-    <Tabs  :data-source="recordTypeList" :value.sync="record.type"/>
+    <Tabs :data-source="recordTypeList" :value.sync="record.type"/>
 
     <FormItem field-name="备注"
-           placeholder="在这里输入备注"
-           @update:value="onUpdateNotes"/>
-    <Tags  @update:value="onUpdateTags"/>
+              placeholder="在这里输入备注"
+              @update:value="onUpdateNotes"/>
+    <Tags @update:value="onUpdateTags"/>
 
   </Layout>
 </template>
@@ -27,22 +27,24 @@
 
   @Component({
 
-    components: {Tags,  FormItem, Tabs, NumberPad},
+    components: {Tags, FormItem, Tabs, NumberPad},
 
   })
   export default class Money extends Vue {
 
-    recordTypeList=recordTypeList
-get recordList(){
-  return this.$store.state.recordList
-}
+    recordTypeList = recordTypeList;
+
+    get recordList() {
+      return this.$store.state.recordList;
+    }
+
     record: RecordItem = {
       tags: [], notes: '', type: '-', amount: 0
 
     };
 
-    created(){
-      this.$store.commit('fetchRecords')
+    created() {
+      this.$store.commit('fetchRecords');
     }
 
     onUpdateTags(value: string[]) {
@@ -68,8 +70,8 @@ get recordList(){
 
 </script>
 
-<style lang="scss">
-  .layout-content {
+<style lang="scss" scoped>
+  ::v-deep .layout-content {
     display: flex;
     flex-direction: column-reverse;
   }
