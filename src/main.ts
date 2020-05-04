@@ -29,5 +29,14 @@ window.scrollTo(0,200)
   },0)
 };
 
-
+if(document.documentElement.clientWidth>500){
+  window.alert('请使用手机打开本页面，以保证您的浏览效果')
+const img=document.createElement('img')
+  img.src='/img/icons/qrcode.png'
+  img.style.position='fixed'
+  img.style.left='50%'
+  img.style.top='50%'
+  img.style.transform='translate(-50%,-50%)'
+  document.body.appendChild(img)
+}
 
