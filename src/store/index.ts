@@ -51,8 +51,8 @@ const store = new Vuex.Store({
     fetchRecords(state) {
       state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
     },
-    createRecord(state, record) {
-      const record2: RecordItem = clone(record);
+    createRecord(state, record: RecordItem ) {
+      const record2= clone(record);
       record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords');
@@ -63,7 +63,13 @@ const store = new Vuex.Store({
     },
     fetchTags(state) {
       state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
-    },
+    if(!state.tagList||state.tagList.length===0){
+      store.commit('createInit','衣')
+      store.commit('createInit','食')
+      store.commit('createInit','住')
+      store.commit('createInit','行')
+    }
+      },
     createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
       if (names.indexOf(name) >= 0) {
@@ -77,7 +83,14 @@ const store = new Vuex.Store({
     saveTags(state) {
       window.localStorage.setItem('tagList', JSON.stringify(state.tagList));
     },
+
+    createInit(state, name: string) {
+      const id = createId().toString();
+      state.tagList.push({id, name: name});
+      store.commit('saveTags');
+    }
   }
+
 });
 
 export default store;
