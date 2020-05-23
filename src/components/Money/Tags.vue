@@ -22,9 +22,10 @@
 
 
 
-  @Component
+@Component
   export default class Tags extends mixins(TagHelper) {
     selectedTags: string[]=[];
+
 
     get tagList() {
       return this.$store.state.tagList;
