@@ -11,7 +11,9 @@
                 field-name="标签名" placeholder="请输入标签名"/>
     </div>
     <div class="button-wrapper">
+      <Button @click="updates">保存标签</Button>
       <Button @click="remove">删除标签</Button>
+
     </div>
   </Layout>
 </template>
@@ -25,6 +27,7 @@
     components: {Button, FormItem},
   })
   export default class EditLabel extends Vue {
+    names ='';
     get tag() {
       return this.$store.state.currentTag;
     }
@@ -37,11 +40,24 @@
         this.$router.replace('/404');
       }
     }
+
     update(name: string) {
       if (this.tag) {
+        this.names=name
+      }
+      }
+
+
+
+    updates() {
+      if(this.names===''){return}
+      if (this.tag) {
+
         this.$store.commit('updateTag', {
-          id: this.tag.id, name
+          id: this.tag.id,name:this.names
         });
+
+        this.$router.back();
       }
     }
     remove() {
@@ -49,9 +65,11 @@
         this.$store.commit('removeTag', this.tag.id);
       }
     }
+
     goBack() {
       this.$router.back();
     }
+
   }
 </script>
 
@@ -82,6 +100,9 @@
   .button-wrapper {
     text-align: center;
     padding: 16px;
-    margin-top: 44-16px;
+    margin-top: 44-16px; 
+    :first-child{
+      margin-right: 56px;
+    }
   }
 </style>
